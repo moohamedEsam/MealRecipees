@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MealRecipes</string>
+    <string name="categories">Categories</string>
+    <string name="ingredients">ingredients</string>
+    <string name="instructions">instructions</string>
+    <string name="user_list">User List</string>
+    <string name="favourite">favourite</string>
+    <string name="search_a_meal">search a meal</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="don_t_have_an_account">don\'t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="username">username</string>
+    <string name="already_have_account">already have account?</string>
+</resources>
