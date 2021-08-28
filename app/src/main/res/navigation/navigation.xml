@@ -7,5 +7,46 @@
     <fragment
             android:id="@+id/splashFragment"
             android:name="com.example.mealrecipees.fragments.SplashFragment"
-            android:label="SplashFragment" />
+            android:label="SplashFragment" >
+        <action
+                android:id="@+id/action_splashFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/navigation" />
+        <action
+                android:id="@+id/action_splashFragment_to_mainScreenFragment"
+                app:destination="@id/mainScreenFragment"
+                app:popUpTo="@id/navigation" />
+    </fragment>
+    <fragment
+            android:id="@+id/categoryFragment"
+            android:name="com.example.mealrecipees.fragments.CategoryFragment"
+            android:label="CategoryFragment" />
+    <fragment
+            android:id="@+id/listsFragment"
+            android:name="com.example.mealrecipees.fragments.ListsFragment"
+            android:label="ListsFragment" />
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.example.mealrecipees.fragments.LoginFragment"
+            android:label="LoginFragment" />
+    <fragment
+            android:id="@+id/mainScreenFragment"
+            android:name="com.example.mealrecipees.fragments.MainScreenFragment"
+            android:label="MainScreenFragment" />
+    <fragment
+            android:id="@+id/mealScreenFragment"
+            android:name="com.example.mealrecipees.fragments.MealScreenFragment"
+            android:label="MealScreenFragment" />
+    <fragment
+            android:id="@+id/searchFragment"
+            android:name="com.example.mealrecipees.fragments.SearchFragment"
+            android:label="SearchFragment" />
+    <fragment
+            android:id="@+id/signUpFragment"
+            android:name="com.example.mealrecipees.fragments.SignUpFragment"
+            android:label="SignUpFragment" />
+    <fragment
+            android:id="@+id/userListsFragment"
+            android:name="com.example.mealrecipees.fragments.UserListsFragment"
+            android:label="UserListsFragment" />
 </navigation>
