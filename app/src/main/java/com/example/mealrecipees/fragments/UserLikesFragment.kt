@@ -5,17 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.mealrecipees.databinding.FragmentListsBinding
-import com.example.mealrecipees.databinding.FragmentSplashBinding
+import com.example.mealrecipees.databinding.FragmentUserLikesBinding
 
-class ListsFragment : Fragment() {
-    private lateinit var binding: FragmentListsBinding
+class UserLikesFragment : Fragment() {
+    private lateinit var binding: FragmentUserLikesBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentListsBinding.inflate(inflater, container, false)
+        binding = FragmentUserLikesBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

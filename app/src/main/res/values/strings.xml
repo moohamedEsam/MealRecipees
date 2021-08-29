@@ -14,4 +14,6 @@
     <string name="register">register</string>
     <string name="username">username</string>
     <string name="already_have_account">already have account?</string>
+    <string name="meals">Meals</string>
+    <string name="see_more">see more</string>
 </resources>

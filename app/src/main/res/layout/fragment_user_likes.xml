@@ -4,19 +4,6 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:srcCompat="@drawable/ic_add_foreground"
-            android:id="@+id/addNewItemToList"
-            android:contentDescription="add"
-            android:backgroundTint="@color/primary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="8dp"
-            android:focusable="true" />
-
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

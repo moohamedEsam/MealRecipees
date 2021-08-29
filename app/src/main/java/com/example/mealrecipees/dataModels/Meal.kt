@@ -112,4 +112,4 @@ data class Meal(
     var strTags: String? = null,
     @SerialName("strYoutube")
     var strYoutube: String? = null
-)
+):java.io.Serializable

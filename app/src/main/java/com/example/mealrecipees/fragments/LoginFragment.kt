@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.mealrecipees.R
 import com.example.mealrecipees.databinding.FragmentLoginBinding
 import com.example.mealrecipees.databinding.FragmentSplashBinding
 import com.example.mealrecipees.utils.NetworkResponse
@@ -29,6 +30,9 @@ class LoginFragment : Fragment() {
             val password = binding.loginPasswordText.text.toString()
             viewModel.signIn(username.trim(), password.trim())
         }
+        binding.registerTextNav.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        }
         return binding.root
     }
 
@@ -37,7 +41,7 @@ class LoginFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.userStatus.collect {
                 when (it) {
-                    is NetworkResponse.Success -> Unit
+                    is NetworkResponse.Success -> findNavController().navigate(R.id.action_loginFragment_to_mainScreenFragment)
                     is NetworkResponse.Loading -> {
                         binding.loginProgress.isVisible = true
                         binding.loginBtn.isVisible = false

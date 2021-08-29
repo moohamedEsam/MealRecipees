@@ -4,8 +4,6 @@
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-l
-<app/src/main/java/com/example/mealrecipees/ui/theme/Color.kt,3/9/39f391a9967fc588b058b069db69f03979eb637e
 |
 Lapp/src/androidTest/java/com/example/mealrecipees/ExampleInstrumentedTest.kt,7/7/773610700977627f3b34866704cb29d95f71863a
 m
@@ -18,14 +16,8 @@ X
 gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
-u
-Eapp/src/main/java/com/example/mealrecipees/fragments/ListsFragment.kt,2/0/20a43ca7c84fb16fffae6bcfbc373680b2c14ccc
 j
 :app/src/main/java/com/example/mealrecipees/MainActivity.kt,b/6/b6be9859199eb3c5673e5903d3dddec1d6b4dc0b
-z
-Japp/src/main/java/com/example/mealrecipees/fragments/MainScreenFragment.kt,6/6/66e65e6beae724d4702d1306b6f36bcd853b5194
-z
-Japp/src/main/java/com/example/mealrecipees/fragments/MealScreenFragment.kt,8/1/81f33b6d914b339e3f222f0b87b05769bd37acd2
 F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
 \
@@ -36,11 +28,23 @@ Fapp/src/main/java/com/example/mealrecipees/fragments/SearchFragment.kt,6/b/6b0
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 l
 <app/src/main/java/com/example/mealrecipees/ui/theme/Shape.kt,5/7/57d44626337abf396aa93d54867e5b2baaa881cc
-v
-Fapp/src/main/java/com/example/mealrecipees/fragments/SignUpFragment.kt,e/4/e4a0874555e96eb30e6362c8df1fd416c896b016
-l
-<app/src/main/java/com/example/mealrecipees/ui/theme/Theme.kt,0/0/00fa8d9b076ef62cacd4cf47095c713f797551ba
 k
 ;app/src/main/java/com/example/mealrecipees/ui/theme/Type.kt,2/1/217d53aae2352bb8d323f6108922a2c2c543f6a8
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 y
-Iapp/src/main/java/com/example/mealrecipees/fragments/UserListsFragment.kt,e/3/e3e4418334e7140c7dac03d6a7f914af29dfb8d8
+Iapp/src/main/java/com/example/mealrecipees/dataModels/CategoryResponse.kt,c/9/c95b3a7d9e003565f6a8734301d908676308a770
+T
+$.idea/codeStyles/codeStyleConfig.xml,d/d/dd7b3350c29c49497756c7f32c69a3bed18b1cba
+u
+Eapp/src/main/java/com/example/mealrecipees/dataModels/MealResponse.kt,7/6/76464793731d54ef32351eaada42025999ef26a6
+s
+Capp/src/main/java/com/example/mealrecipees/utils/NetworkResponse.kt,c/1/c1da3ce68f2b60eed9f095aaa20e3a2b6218b7ce
+L
+.idea/codeStyles/Project.xml,6/e/6ecd6000a7b6f4a2884412ff19f74193ed089648
+v
+Fapp/src/main/java/com/example/mealrecipees/fragments/SplashFragment.kt,7/a/7a72f709e8a8c62321ab9993ebb5c967f44af9e9
+w
+Gapp/src/main/java/com/example/mealrecipees/viewModels/LoginViewModel.kt,b/e/be9c6a4eb554ee8026f47bad07e158af80e040c3
+t
+Dapp/src/main/java/com/example/mealrecipees/utils/ApplicationClass.kt,3/2/32d00d07096600248a7b7c46223dbbdbfaf517f2

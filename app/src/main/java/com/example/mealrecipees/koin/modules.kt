@@ -3,6 +3,9 @@ package com.example.mealrecipees.koin
 import android.util.Log
 import com.example.mealrecipees.repository.Repository
 import com.example.mealrecipees.viewModels.LoginViewModel
+import com.example.mealrecipees.viewModels.MainScreenViewModel
+import com.example.mealrecipees.viewModels.MealViewModel
+import com.example.mealrecipees.viewModels.SignUpViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import io.ktor.client.*
@@ -19,6 +22,9 @@ val appModule = module {
     single { provideKtorClient(get()) }
     single { Repository(get(), FirebaseAuth.getInstance(), FirebaseFirestore.getInstance()) }
     viewModel { LoginViewModel(get()) }
+    viewModel { SignUpViewModel(get()) }
+    viewModel { MainScreenViewModel(get()) }
+    viewModel { MealViewModel() }
 }
 
 fun provideKtorClient(json: Json) = HttpClient(CIO) {

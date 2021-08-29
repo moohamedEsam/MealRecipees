@@ -14,4 +14,4 @@ data class Category(
     var strCategoryDescription: String? = null,
     @SerialName("strCategoryThumb")
     var strCategoryThumb: String? = null
-)
+):java.io.Serializable

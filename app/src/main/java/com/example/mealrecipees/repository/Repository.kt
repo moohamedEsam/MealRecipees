@@ -92,31 +92,46 @@ class Repository(
     suspend fun login(username: String, password: String): String? {
         return try {
             auth.signInWithEmailAndPassword(username, password).await()
-            if(auth.currentUser != null)
-                "false"
-            else
-                "true"
+            when {
+                auth.currentUser == null -> "false"
+                auth.currentUser?.isEmailVerified == true -> "true"
+                else -> {
+                    auth.signOut()
+                    "email not verified"
+                }
+            }
         } catch (exception: Exception) {
             Log.d("Repository", "login: ${exception.message}")
             exception.message
         }
     }
 
-    private suspend fun register(username: String, password: String) {
-        try {
+    private suspend fun register(username: String, password: String): String? {
+        return try {
             auth.createUserWithEmailAndPassword(username, password).await()
+            "true"
         } catch (exception: Exception) {
             Log.d("Repository", "register: ${exception.message}")
+            exception.message
         }
     }
 
-    private fun authenticate() {
-        auth.currentUser?.sendEmailVerification()
+    private suspend fun authenticate() {
+        auth.currentUser?.sendEmailVerification()?.await()
     }
 
-    suspend fun createNewAccount(username: String, password: String){
-        register(username, password)
-        authenticate()
+    suspend fun createNewAccount(username: String, password: String): String? {
+        return try {
+            if (register(username, password) == "true") {
+                authenticate()
+                auth.signOut()
+                "true"
+            } else
+                "false"
+        } catch (exception: Exception) {
+            Log.d("Repository", "createNewAccount: ${exception.message}")
+            exception.message
+        }
     }
 
     @PublishedApi
