@@ -24,6 +24,9 @@
         <argument
                 android:name="category"
                 app:argType="com.example.mealrecipees.dataModels.Category" />
+        <action
+                android:id="@+id/action_categoryFragment_to_categoryMealsFragment"
+                app:destination="@id/categoryMealsFragment" />
     </fragment>
     <fragment
             android:id="@+id/loginFragment"
@@ -47,6 +50,9 @@
         <action
                 android:id="@+id/action_mainScreenFragment_to_categoryFragment"
                 app:destination="@id/categoryFragment" />
+        <action
+                android:id="@+id/action_mainScreenFragment_to_categoryMealsFragment"
+                app:destination="@id/categoryMealsFragment" />
     </fragment>
     <fragment
             android:id="@+id/mealScreenFragment"
@@ -68,4 +74,36 @@
             android:id="@+id/userLikesFragment"
             android:name="com.example.mealrecipees.fragments.UserLikesFragment"
             android:label="UserLikesFragment" />
+    <fragment
+            android:id="@+id/categoryMealsFragment"
+            android:name="com.example.mealrecipees.fragments.CategoryMealsFragment"
+            android:label="CategoryMealsFragment" >
+        <argument
+                android:name="category"
+                app:argType="string"
+                android:defaultValue='""' />
+        <action
+                android:id="@+id/action_categoryMealsFragment_to_mealScreenFragment"
+                app:destination="@id/mealScreenFragment" />
+    </fragment>
+    <action
+            android:id="@+id/action_global_mainScreenFragment"
+            app:destination="@id/mainScreenFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    <action
+            android:id="@+id/action_global_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    <action
+            android:id="@+id/action_global_userLikesFragment"
+            app:destination="@id/userLikesFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    <action
+            android:id="@+id/action_global_categoryFragment"
+            app:destination="@id/categoryFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
 </navigation>

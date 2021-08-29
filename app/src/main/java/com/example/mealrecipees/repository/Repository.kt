@@ -54,7 +54,7 @@ class Repository(
         return baseGet(Url.MEAL_BY_LETTER_OR_NAME, params)
     }
 
-    suspend fun getMealById(id: Int): NetworkResponse<MealResponse> {
+    suspend fun getMealById(id: String): NetworkResponse<MealResponse> {
         val params = HashMap<String, Any>(
             mapOf(
                 "i" to id

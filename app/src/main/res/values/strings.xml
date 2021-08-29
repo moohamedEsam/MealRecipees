@@ -16,4 +16,12 @@
     <string name="already_have_account">already have account?</string>
     <string name="meals">Meals</string>
     <string name="see_more">see more</string>
+    <string name="filter_by">filterBy</string>
+    <string name="results">Results</string>
+    <string-array name="sortValues">
+        <item>first letter</item>
+        <item>category</item>
+        <item>main ingredient</item>
+        <item>meal name</item>
+    </string-array>
 </resources>

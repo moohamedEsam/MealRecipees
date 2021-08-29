@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
+
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            app:layout_constraintStart_toEndOf="@id/textView"
+            app:layout_constraintTop_toBottomOf="@id/searchTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="8dp"
+            android:entries="@array/sortValues"
+            android:minHeight="48dp" />
+
+    <TextView
+            android:text="@string/filter_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchTextInputLayout"
+            android:layout_margin="8dp"
+            android:textColor="@color/primaryText"
+            android:textSize="18sp" />
 
     <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/searchTextInputLayout"
@@ -20,18 +42,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchTextInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/spinner"
             android:layout_margin="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Results"
+            android:text="@string/results"
             android:textSize="28sp"
             android:textColor="@color/primaryText"
             android:visibility="gone"
-            android:id="@+id/resultTextView"
-            />
+            android:id="@+id/resultTextView" />
+
     <androidx.compose.ui.platform.ComposeView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -40,6 +63,5 @@
             app:layout_constraintTop_toBottomOf="@id/resultTextView"
             android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/searchResultListComposeView"
-            />
+            android:id="@+id/searchResultListComposeView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:title="main"
+            android:id="@+id/mainScreenFragment"
+            android:icon="@drawable/ic_home_foreground" />
+    <item
+            android:title="category"
+            android:id="@+id/categoryFragment"
+            android:icon="@drawable/ic_category_foreground" />
+    <item
+            android:title="favourite"
+            android:id="@+id/userLikesFragment"
+            android:icon="@drawable/ic_like_foreground"
+            />
+    <item
+            android:title="search"
+            android:id="@+id/searchFragment"
+            android:icon="@drawable/ic_search_foreground" />
+</menu>

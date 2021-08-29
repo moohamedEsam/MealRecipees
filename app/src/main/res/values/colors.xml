@@ -2,7 +2,7 @@
 <resources>
     <color name="background">#FF282725</color>
     <color name="primaryText">#FFFFFFFF</color>
-    <color name="secondaryText">#FF8A8A8A</color>
+    <color name="secondaryText">#6C6C6C</color>
     <color name="primary">#E4C33F</color>
     <color name="secondary">#FF8A8A8A</color>
     <color name="red">#FFFF3D00</color>

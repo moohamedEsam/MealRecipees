@@ -39,11 +39,12 @@ class MainScreenViewModel(private val repository: Repository) : ViewModel() {
 
 
     fun setMealsState() = viewModelScope.launch {
+        if(currentLetter == 'z')
+            return@launch
         _mealsState.value = NetworkResponse.Loading()
         _mealsState.value = repository.getMealByLetter(currentLetter)
         meals.addAll(_mealsState.value.data?.meals ?: emptyList())
-        if (currentLetter != 'z')
-            currentLetter++
+        currentLetter++
         Log.d("MainScreenViewModel", "setMealsState: ${_mealsState.value.data?.meals?.size}")
     }
 }

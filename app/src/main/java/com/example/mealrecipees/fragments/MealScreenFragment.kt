@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
@@ -26,8 +24,10 @@ import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import com.example.mealrecipees.R
 import com.example.mealrecipees.dataModels.Meal
+import com.example.mealrecipees.dataModels.MealResponse
 import com.example.mealrecipees.databinding.FragmentMealScreenBinding
 import com.example.mealrecipees.databinding.FragmentSplashBinding
+import com.example.mealrecipees.utils.NetworkResponse
 import com.example.mealrecipees.viewModels.MealViewModel
 import org.koin.android.ext.android.inject
 
@@ -37,7 +37,8 @@ class MealScreenFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = MealScreenFragmentArgs.fromBundle(arguments as Bundle)
-        viewModel.meal = args.meal
+        viewModel.setMeal(args.meal)
+        viewModel.checkMeal()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -49,22 +50,23 @@ class MealScreenFragment : Fragment() {
     ): View {
         binding = FragmentMealScreenBinding.inflate(inflater, container, false)
         binding.mealImageComposeView.setContent {
+            val meal by viewModel.meal
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 Image(
                     painter = rememberImagePainter(
-                        data = viewModel.meal?.strMealThumb,
+                        data = meal.strMealThumb,
                         builder = { transformations(CircleCropTransformation()) }),
                     contentDescription = null,
                     modifier = Modifier.size(220.dp)
                 )
             }
         }
-        binding.mealTitle.text = viewModel.meal?.strMeal ?: ""
+        binding.mealTitle.text = viewModel.meal.value.strMeal ?: ""
         binding.choiceListComposeView.setContent {
             val choice by viewModel.choice
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 if (choice == "ingredients") {
-                    viewModel.meal?.run {
+                    viewModel.meal.value.run {
                         ShowText(value = strIngredient1)
                         ShowText(value = strIngredient2)
                         ShowText(value = strIngredient3)
@@ -77,10 +79,11 @@ class MealScreenFragment : Fragment() {
                         ShowText(value = strIngredient10)
                     }
                 } else {
-                    viewModel.meal?.run {
+                    viewModel.meal.value.run {
                         strInstructions?.split('.')?.let {
                             it.forEachIndexed { i, ins ->
-                                ShowText(value = "${i + 1}. $ins")
+                                if (ins.isNotBlank())
+                                    ShowText(value = "${i + 1}. $ins")
                             }
                         }
                     }
