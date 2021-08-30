@@ -19,6 +19,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
@@ -29,6 +30,7 @@ import com.example.mealrecipees.databinding.FragmentMealScreenBinding
 import com.example.mealrecipees.databinding.FragmentSplashBinding
 import com.example.mealrecipees.utils.NetworkResponse
 import com.example.mealrecipees.viewModels.MealViewModel
+import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 
 class MealScreenFragment : Fragment() {
@@ -39,6 +41,7 @@ class MealScreenFragment : Fragment() {
         val args = MealScreenFragmentArgs.fromBundle(arguments as Bundle)
         viewModel.setMeal(args.meal)
         viewModel.checkMeal()
+        viewModel.isLiked()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -104,8 +107,22 @@ class MealScreenFragment : Fragment() {
             binding.ingredientsTv.setBackgroundColor(requireContext().getColor(R.color.background))
             viewModel.setChoice("instructions")
         }
-
+        binding.favouriteButton.setOnClickListener {
+            viewModel.handleButtonClick()
+        }
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lifecycleScope.launchWhenStarted {
+            viewModel.liked.collect {
+                if (it)
+                    binding.favouriteButton.setImageResource(R.drawable.ic_favourite_foreground)
+                else
+                    binding.favouriteButton.setImageResource(R.drawable.ic_not_liked_foreground)
+            }
+        }
     }
 
     @Composable

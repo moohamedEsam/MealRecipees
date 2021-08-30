@@ -18,6 +18,8 @@
     <string name="see_more">see more</string>
     <string name="filter_by">filterBy</string>
     <string name="results">Results</string>
+    <string name="log_out">log out</string>
+    <string name="search">search</string>
     <string-array name="sortValues">
         <item>first letter</item>
         <item>category</item>

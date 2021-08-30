@@ -1,5 +1,6 @@
 package com.example.mealrecipees.viewModels
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -47,4 +48,5 @@ class MainScreenViewModel(private val repository: Repository) : ViewModel() {
         currentLetter++
         Log.d("MainScreenViewModel", "setMealsState: ${_mealsState.value.data?.meals?.size}")
     }
+
 }

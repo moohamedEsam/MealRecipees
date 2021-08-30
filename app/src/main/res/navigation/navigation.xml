@@ -65,7 +65,11 @@
     <fragment
             android:id="@+id/searchFragment"
             android:name="com.example.mealrecipees.fragments.SearchFragment"
-            android:label="SearchFragment" />
+            android:label="SearchFragment" >
+        <action
+                android:id="@+id/action_searchFragment_to_mealScreenFragment"
+                app:destination="@id/mealScreenFragment" />
+    </fragment>
     <fragment
             android:id="@+id/signUpFragment"
             android:name="com.example.mealrecipees.fragments.SignUpFragment"
@@ -73,7 +77,11 @@
     <fragment
             android:id="@+id/userLikesFragment"
             android:name="com.example.mealrecipees.fragments.UserLikesFragment"
-            android:label="UserLikesFragment" />
+            android:label="UserLikesFragment" >
+        <action
+                android:id="@+id/action_userLikesFragment_to_mealScreenFragment"
+                app:destination="@id/mealScreenFragment" />
+    </fragment>
     <fragment
             android:id="@+id/categoryMealsFragment"
             android:name="com.example.mealrecipees.fragments.CategoryMealsFragment"
@@ -106,4 +114,13 @@
             app:destination="@id/categoryFragment"
             app:popUpTo="@id/navigation"
             app:launchSingleTop="true" />
+    <action
+            android:id="@+id/action_global_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/navigation"
+            app:launchSingleTop="true" />
+    <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.example.mealrecipees.fragments.ProfileFragment"
+            android:label="ProfileFragment" />
 </navigation>

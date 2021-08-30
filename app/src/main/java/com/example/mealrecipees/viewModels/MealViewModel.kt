@@ -8,12 +8,15 @@ import com.example.mealrecipees.dataModels.Meal
 import com.example.mealrecipees.dataModels.MealResponse
 import com.example.mealrecipees.repository.Repository
 import com.example.mealrecipees.utils.NetworkResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MealViewModel(private val repository: Repository) : ViewModel() {
     private val _meal = mutableStateOf(Meal())
     val meal: State<Meal> = _meal
-
+    private val _liked = MutableStateFlow<Boolean>(false)
+    val liked: StateFlow<Boolean> = _liked
     fun setMeal(value: Meal) {
         _meal.value = value
     }
@@ -34,4 +37,29 @@ class MealViewModel(private val repository: Repository) : ViewModel() {
             }
         }
     }
+
+    fun isLiked() = viewModelScope.launch {
+        _liked.emit(repository.isLiked(_meal.value.idMeal ?: "0"))
+    }
+
+    private fun likeMeal() = viewModelScope.launch {
+        repository.likeMeal(_meal.value.idMeal ?: "")
+    }
+
+    private fun unlikeMeal() = viewModelScope.launch {
+        repository.unlikeMeal(_meal.value.idMeal ?: "")
+    }
+
+    fun handleButtonClick() = viewModelScope.launch {
+        isLiked().join()
+        if (_liked.value) {
+            unlikeMeal()
+            _liked.emit(false)
+        } else {
+            likeMeal()
+            _liked.emit(true)
+        }
+    }
+
+
 }

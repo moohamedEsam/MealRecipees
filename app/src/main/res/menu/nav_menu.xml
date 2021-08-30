@@ -18,4 +18,10 @@
             android:title="search"
             android:id="@+id/searchFragment"
             android:icon="@drawable/ic_search_foreground" />
+
+    <item
+        android:title="profile"
+            android:id="@+id/profileFragment"
+            android:icon="@drawable/ic_profile_foreground"
+        />
 </menu>

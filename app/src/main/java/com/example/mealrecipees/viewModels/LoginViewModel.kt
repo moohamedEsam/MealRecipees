@@ -1,5 +1,6 @@
 package com.example.mealrecipees.viewModels
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mealrecipees.repository.Repository
@@ -22,4 +23,6 @@ class LoginViewModel(private val repository: Repository) : ViewModel() {
                 _userStatus.emit(NetworkResponse.Error(it))
         }
     }
+
+    fun logOut(context: Context) = repository.signOut(context = context)
 }

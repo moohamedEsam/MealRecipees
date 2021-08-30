@@ -1,6 +1,7 @@
 package com.example.mealrecipees.koin
 
 import android.util.Log
+import android.widget.SearchView
 import com.example.mealrecipees.repository.Repository
 import com.example.mealrecipees.viewModels.*
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,8 @@ val appModule = module {
     viewModel { MealViewModel(get()) }
     viewModel { CategoryMealsViewModel(get()) }
     viewModel { CategoryViewModel(get()) }
+    viewModel { UserLikesViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
 }
 
 fun provideKtorClient(json: Json) = HttpClient(CIO) {

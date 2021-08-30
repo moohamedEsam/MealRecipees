@@ -1,16 +1,22 @@
 package com.example.mealrecipees.repository
 
+import android.content.Context
 import android.util.Log
-import com.example.mealrecipees.dataModels.Category
+import android.widget.Toast
+import androidx.compose.runtime.MutableState
 import com.example.mealrecipees.dataModels.CategoryResponse
 import com.example.mealrecipees.dataModels.Meal
 import com.example.mealrecipees.dataModels.MealResponse
 import com.example.mealrecipees.utils.NetworkResponse
 import com.example.mealrecipees.utils.Url
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import io.ktor.client.*
 import io.ktor.client.request.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class Repository(
@@ -61,10 +67,6 @@ class Repository(
             )
         )
         return baseGet(Url.MEAL_BY_ID, params)
-    }
-
-    suspend fun getRandomMeal(): NetworkResponse<MealResponse> {
-        return baseGet(Url.RANDOM)
     }
 
     suspend fun getAllCategories(): NetworkResponse<CategoryResponse> {
@@ -132,6 +134,73 @@ class Repository(
             Log.d("Repository", "createNewAccount: ${exception.message}")
             exception.message
         }
+    }
+
+    fun signOut(context: Context): Boolean {
+        return try {
+            auth.signOut()
+            true
+        } catch (exception: Exception) {
+            Log.d("Repository", "signOut: ${exception.message}")
+            Toast.makeText(context, exception.message, Toast.LENGTH_SHORT).show()
+            false
+        }
+    }
+
+    fun likeMeal(mealId: String) {
+        fireStore.collection("likes").document(auth.currentUser?.uid ?: "")
+            .update("favourite", FieldValue.arrayUnion(mealId))
+            .addOnFailureListener {
+                val data = HashMap<String, Any>(
+                    mapOf(
+                        "favourite" to listOf(mealId)
+                    )
+                )
+                fireStore.collection("likes").document(auth.currentUser?.uid ?: "")
+                    .set(data)
+            }
+    }
+
+    fun unlikeMeal(mealId: String) {
+        fireStore.collection("likes").document(auth.currentUser?.uid ?: "")
+            .update("favourite", FieldValue.arrayRemove(mealId))
+    }
+
+    suspend fun isLiked(mealId: String): Boolean {
+        fireStore.collection("likes")
+            .document(auth.currentUser?.uid ?: "")
+            .get().await().data.let {
+                return (it?.containsKey("favourite") == true && (it["favourite"] as List<*>).contains(
+                    mealId
+                ))
+            }
+    }
+
+    suspend fun getLikedMeals(likes: MutableState<NetworkResponse<List<Meal>>>) {
+        likes.value = NetworkResponse.Loading()
+        fireStore.collection("likes")
+            .document(auth.currentUser?.uid ?: "")
+            .addSnapshotListener { value, error ->
+                if (error != null) {
+                    Log.d("Repository", "getLikedMeals: ${error.message}")
+                    likes.value = NetworkResponse.Error(error.message)
+                    return@addSnapshotListener
+                }
+                value?.get("favourite")?.let {
+                    val meals = mutableListOf<Meal>()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        (it as List<*>).forEach { id ->
+                            val response = getMealById(id as String)
+                            if (response is NetworkResponse.Success) {
+                                response.data?.meals?.get(0)?.let { meal ->
+                                    meals.add(meal)
+                                }
+                            }
+                        }
+                        likes.value = NetworkResponse.Success(meals)
+                    }
+                }
+            }
     }
 
     @PublishedApi
